@@ -7,5 +7,5 @@
 	if ($args ~* do=(log|admin|profile)) {
 		rewrite ^ https://$host$request_uri? redirect;
 	}
-	# include dokuwiki.conf;
+	include dokuwiki.conf;
     }
