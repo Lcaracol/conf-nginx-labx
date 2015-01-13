@@ -1,5 +1,5 @@
     server {
-	server_name wiki.vm_labx wiki.labx.fr
+	server_name wiki.vm_labx wiki.labx.fr;
 	root /var/www/labx_wiki/files;
 	index doku.php;
 	listen 80;
