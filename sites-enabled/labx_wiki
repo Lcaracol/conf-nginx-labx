@@ -1,0 +1,11 @@
+    server {
+	server_name wiki.vm_labx wiki.labx.fr
+	root /var/www/labx_wiki/files;
+	index doku.php;
+	listen 80;
+	#Enforce https for logins, admin
+	if ($args ~* do=(log|admin|profile)) {
+		rewrite ^ https://$host$request_uri? redirect;
+	}
+	include dokuwiki.conf;
+    }
