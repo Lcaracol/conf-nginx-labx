@@ -1,3 +1,6 @@
+# In http context
+map $scheme $php_https { default off; https on; }
+
     server {
 	server_name wiki.vm_labx wiki.labx.fr;
 	root /var/www/labx_wiki/files;
