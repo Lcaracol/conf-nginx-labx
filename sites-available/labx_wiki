@@ -1,0 +1,44 @@
+# In http context
+map $scheme $php_https { default off; https on; }
+
+    # http server
+    server {
+	server_name wiki.vm_labx wiki.labx.fr;
+	
+	root /var/www/labx_wiki/files;
+	index doku.php;
+	
+	listen 80;
+	listen [::]:80 default_server ipv6only=on;
+	
+	#Enforce https for logins, admin
+	if ($args ~* do=(log|admin|profile)) {
+		rewrite ^ https://$host$request_uri? redirect;
+	}
+	include dokuwiki.conf;
+    }
+
+    # https server
+    server {
+    server_name wiki.vm_labx wiki.labx.fr;
+    root /var/www/labx_wiki/files;
+	index doku.php;
+
+	listen 443 ssl;
+
+    ssl_certificate /etc/nginx/ssl/vm.labx.fr.crt;
+    ssl_certificate_key /etc/nginx/ssl/vm.labx.fr.key;
+    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers         RC4:HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers on;
+	keepalive_requests    10;
+	keepalive_timeout     60 60;
+
+	#switch back to plain http for normal view
+	if ($args ~* (do=show|^$)){
+		rewrite ^ http://$host$request_uri? redirect;
+	}
+	
+	include dokuwiki.conf;
+    }
+
