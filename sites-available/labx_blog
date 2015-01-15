@@ -1,9 +1,9 @@
 # URL: add a permanent redirect if required.
 server {
-    server_name www.demo1.com;
-    root /home/demouser/sitedir1;
-    access_log /var/log/nginx/www.demo1.com.access.log;
-    error_log /var/log/nginx/www.demo1.com.error.log;
+    server_name vm_labx blog.vm_labx labx.fr;
+    root /var/www/labx_blog/files/ ;
+    access_log /var/log/nginx/labx_blog.access.log;
+    error_log /var/log/nginx/labx_blog.error.log;
     include global/common.conf;
     include global/wordpress.conf;
     include global/multisite.conf;
