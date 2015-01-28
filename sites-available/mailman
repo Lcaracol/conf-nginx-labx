@@ -1,0 +1,26 @@
+server {
+  server_name lists.labx.fr;
+  root /usr/lib/mailman/cgi-bin;
+
+  location = / {
+    rewrite ^ /listinfo permanent;
+  }
+
+  location / {
+    fastcgi_split_path_info ^(/[^/]*)(.*)$;
+    fastcgi_pass unix:/var/run/fcgiwrap.sock;
+    include fastcgi.conf;
+    fastcgi_param PATH_INFO         $fastcgi_path_info;
+    fastcgi_param PATH_TRANSLATED   $document_root$fastcgi_path_info;
+  }
+
+  location /icons {
+    alias /usr/lib/mailman/icons;
+  }
+
+  location /archives {
+    alias /var/lib/mailman/archives/public;
+    autoindex on;
+  }
+
+}
