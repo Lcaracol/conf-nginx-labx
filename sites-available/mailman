@@ -3,14 +3,14 @@ server {
   root /usr/lib/mailman/scripts;
 
   location = / {
-    rewrite ^ /listinfo permanent;
+    rewrite ^ /mailman permanent;
   }
 
   location /cgi-bin/mailman {
     root /usr/lib;
     fastcgi_split_path_info ^(/[^/]*)(.*)$;
     fastcgi_pass unix:/var/run/fcgiwrap.socket;
-    include fcgiwrap.conf;
+    include fastcgi_params;
     fastcgi_param PATH_INFO         $fastcgi_path_info;
     fastcgi_param PATH_TRANSLATED   $document_root$fastcgi_path_info;
     fastcgi_intercept_errors on;
