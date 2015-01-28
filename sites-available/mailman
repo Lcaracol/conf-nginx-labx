@@ -7,7 +7,7 @@ server {
   }
 
   location /cgi-bin/mailman {
-    root /usr/lib;
+    root /usr/lib/;
     fastcgi_split_path_info ^(/[^/]*)(.*)$;
     fastcgi_pass unix:/var/run/fcgiwrap.socket;
     include fastcgi_params;
