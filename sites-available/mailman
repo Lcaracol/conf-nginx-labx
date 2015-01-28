@@ -6,7 +6,8 @@ server {
     rewrite ^ /listinfo permanent;
   }
 
-  location / {
+  location /cgi-bin/mailman {
+    root /usr/lib;
     fastcgi_split_path_info ^(/[^/]*)(.*)$;
     fastcgi_pass unix:/var/run/fcgiwrap.socket;
     include fcgiwrap.conf;
@@ -15,8 +16,8 @@ server {
     fastcgi_intercept_errors on;
   }
 
-  location /icons {
-    alias /usr/lib/mailman/icons;
+  location /images/mailman {
+    alias /usr/share/images/mailman;
   }
 
   location /archives {
