@@ -1,6 +1,6 @@
 server {
   server_name lists.labx.fr;
-  root /usr/lib/mailman/cgi-bin;
+  root /usr/lib/mailman/bin;
 
   location = / {
     rewrite ^ /listinfo permanent;
@@ -9,7 +9,7 @@ server {
   location / {
     fastcgi_split_path_info ^(/[^/]*)(.*)$;
     fastcgi_pass unix:/var/run/fcgiwrap.socket;
-    # include fastcgi.conf;
+    include fastcgi_params;
     fastcgi_param PATH_INFO         $fastcgi_path_info;
     fastcgi_param PATH_TRANSLATED   $document_root$fastcgi_path_info;
   }
