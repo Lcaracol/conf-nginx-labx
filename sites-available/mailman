@@ -3,7 +3,7 @@ server {
   root /usr/lib/mailman/scripts;
 
   location = / {
-    rewrite ^ /mailman permanent;
+    rewrite ^ /cgi-bin/mailman/listinfo permanent;
   }
 
   location /cgi-bin/mailman {
