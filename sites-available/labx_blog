@@ -1,6 +1,6 @@
 # URL: add a permanent redirect if required.
 server {
-    server_name vm_labx blog.vm_labx labx.fr;
+    server_name vm_labx blog.vm_labx labx.fr www.labx.fr blog.labx.fr;
     root /var/www/labx_blog/files/ ;
     access_log /var/log/nginx/labx_blog.access.log;
     error_log /var/log/nginx/labx_blog.error.log;
