@@ -1,6 +1,6 @@
 server {
   server_name lists.labx.fr;
-  root /usr/lib/mailman/bin;
+  root /usr/lib/mailman/scripts;
 
   location = / {
     rewrite ^ /listinfo permanent;
@@ -12,6 +12,7 @@ server {
     include fcgiwrap.conf;
     fastcgi_param PATH_INFO         $fastcgi_path_info;
     fastcgi_param PATH_TRANSLATED   $document_root$fastcgi_path_info;
+    fastcgi_intercept_errors on;
   }
 
   location /icons {
