@@ -35,9 +35,9 @@ map $scheme $php_https { default off; https on; }
 	keepalive_timeout     60 60;
 
 	#switch back to plain http for normal view
-	if ($args ~* (do=show|^$)){
-		rewrite ^ http://$host$request_uri? redirect;
-	}
+	# if ($args ~* (do=show|^$)){
+	#	rewrite ^ http://$host$request_uri? redirect;
+	# }
 	
 	include dokuwiki.conf;
     }
