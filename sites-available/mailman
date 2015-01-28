@@ -8,7 +8,7 @@ server {
 
   location / {
     fastcgi_split_path_info ^(/[^/]*)(.*)$;
-    fastcgi_pass unix:/var/run/fcgiwrap.sock;
+    fastcgi_pass unix:/var/run/fcgiwrap.socket;
     # include fastcgi.conf;
     fastcgi_param PATH_INFO         $fastcgi_path_info;
     fastcgi_param PATH_TRANSLATED   $document_root$fastcgi_path_info;
