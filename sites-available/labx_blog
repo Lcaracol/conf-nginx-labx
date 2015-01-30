@@ -5,6 +5,12 @@ server {
     root /var/www/labx_blog/files/ ;
     access_log /var/log/nginx/labx_blog.access.log;
     error_log /var/log/nginx/labx_blog.error.log;
+
+    # Redirect wp-admin and wp-login requests to HTTPS.
+    location ~ /wp-(?:admin|login) {
+    return 301 https://$host$request_uri;
+    }
+
     include global/common.conf;
     include global/wordpress.conf;
     include global/multisite.conf;
