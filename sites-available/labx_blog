@@ -7,4 +7,9 @@ server {
     include global/common.conf;
     include global/wordpress.conf;
     include global/multisite.conf;
+    
+    # Redirect wp-admin and wp-login requests to HTTPS.
+    location ~ /wp-(?:admin|login) {
+    return 301 https://$host$request_uri;
+    }
 }
