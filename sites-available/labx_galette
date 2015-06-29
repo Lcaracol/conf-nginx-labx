@@ -1,13 +1,13 @@
 server {
     listen 80;
-    server_name galette.vm_labx galette.labx.fr;
+    server_name galette.labx.fr;
     
     return 301 https://$server_name$request_uri;
 }
 
 server {
     listen 443;
-    server_name galette.vm_labx galette.labx.fr;
+    server_name galette.labx.fr;
 
     root /var/www/labx_galette/files;
     index index.php;

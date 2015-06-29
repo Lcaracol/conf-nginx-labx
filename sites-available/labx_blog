@@ -11,6 +11,11 @@ server {
     return 301 https://$host$request_uri;
     }
 
+    location ~ /mailman/* {
+    return 301 https://lists.labx.fr;
+    }
+
+
     include global/common.conf;
     include global/wordpress.conf;
     include global/multisite.conf;
@@ -23,6 +28,9 @@ server {
     access_log /var/log/nginx/labx_blog.access.log;
     error_log /var/log/nginx/labx_blog.error.log;
     
+    location ~ /mailman/* {
+    return 301 https://lists.labx.fr;
+    }
 
     ssl_certificate /etc/nginx/ssl/vm.labx.fr.crt;
     ssl_certificate_key /etc/nginx/ssl/vm.labx.fr.key;

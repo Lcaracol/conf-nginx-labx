@@ -22,7 +22,7 @@ server {
     root /usr/lib/;
     fastcgi_split_path_info (^/cgi-bin/mailman/[^/]*)(.*)$;
     fastcgi_pass unix:/var/run/fcgiwrap.socket;
-    include fastcgi_params;
+    include fastcgi_params.mailman;
     fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
     fastcgi_param PATH_INFO         $fastcgi_path_info;
     fastcgi_param PATH_TRANSLATED   $document_root$fastcgi_path_info;

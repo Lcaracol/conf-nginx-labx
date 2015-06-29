@@ -1,13 +1,13 @@
 server {
     listen 80;
-    server_name teampass.vm_labx teampass.labx.fr;
+    server_name teampass.labx.fr;
     
     return 301 https://$server_name$request_uri;
 }
 
 server {
     listen 443;
-    server_name teampass.vm_labx teampass.labx.fr;
+    server_name teampass.labx.fr;
 
     root /var/www/labx_teampass/files;
     index index.php;
