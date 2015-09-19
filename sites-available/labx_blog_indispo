@@ -6,5 +6,30 @@ server {
     access_log /var/log/nginx/labx_blog_indispo.access.log;
     error_log /var/log/nginx/labx_blog_indispo.error.log;
 
+    location ~ /mailman/* {
+    return 301 https://lists.labx.fr;
+    }
+
+}
+
+server {
+    listen 443 ssl;
+    server_name labx.fr www.labx.fr blog.labx.fr;
+
+    root /var/www/labx_blog_indispo;
+    access_log /var/log/nginx/labx_blog_indispo.access.log;
+    error_log /var/log/nginx/labx_blog_indispo.error.log;
+
+    location ~ /mailman/* {
+    return 301 https://lists.labx.fr;
+    }
+
+    ssl_certificate /etc/nginx/ssl/vm.labx.fr.crt;
+    ssl_certificate_key /etc/nginx/ssl/vm.labx.fr.key;
+    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers         RC4:HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers on;
+    keepalive_requests    10;
+    keepalive_timeout     60 60;
 }
 
